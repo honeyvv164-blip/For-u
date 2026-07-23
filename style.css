@@ -158,6 +158,8 @@ body{
     width:420px;
     height:300px;
 
+    overflow:hidden;
+
     transform-style:preserve-3d;
 
     filter:drop-shadow(
@@ -165,8 +167,7 @@ body{
     );
 
 }
-
-/* ==========================================
+* ==========================================
    ENVELOPE BODY
 ========================================== */
 
@@ -357,7 +358,7 @@ body{
 
     z-index:4;
 
-    transform:translateY(165px);
+    transform:translateY(195px);
 
     transition:transform 1s cubic-bezier(.22,1,.36,1);
 
@@ -369,7 +370,7 @@ body{
 
 .envelope.open .letter{
 
-    transform:translateY(-95px);
+    transform:translateY(-70px);
 
 }
 
