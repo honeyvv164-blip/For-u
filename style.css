@@ -165,18 +165,16 @@ body{
 
     position:relative;
 
-    width:380px;
-
-    height:250px;
+    width:400px;
+    height:260px;
 
     transform-style:preserve-3d;
 
     transition:transform .8s ease;
 
-    filter:drop-shadow(0 25px 40px rgba(0,0,0,.18));
+    filter:drop-shadow(0 30px 45px rgba(0,0,0,.18));
 
 }
-
 /* ==========================================
    ENVELOPE BODY
 ========================================== */
@@ -189,17 +187,19 @@ body{
     bottom:0;
 
     width:100%;
-    height:190px;
+    height:215px;
 
     background:linear-gradient(
         to bottom,
-        #f6cad8,
-        #ecadc0
+        #f7c8d8,
+        #e9a8bd
     );
 
-    border-radius:0 0 18px 18px;
+    border-radius:0 0 20px 20px;
 
     overflow:hidden;
+
+    z-index:2;
 
     box-shadow:
         inset 0 8px 12px rgba(255,255,255,.35),
@@ -323,9 +323,8 @@ body{
     height:135px;
 
     background:linear-gradient(
-        to bottom,
         #ffd8e6,
-        #f3b6c9
+        #f4b7ca
     );
 
     clip-path:polygon(
@@ -336,21 +335,15 @@ body{
 
     transform-origin:top center;
 
+    transition:1s cubic-bezier(.25,.8,.25,1);
+
     transform:rotateX(0deg);
 
-    transition:
-        transform 1s cubic-bezier(.25,.8,.25,1);
-
-    z-index:30;
+    z-index:15;
 
     backface-visibility:hidden;
 
-    box-shadow:
-        inset 0 10px 16px rgba(255,255,255,.45),
-        0 5px 15px rgba(0,0,0,.08);
-
 }
-
 /* ด้านหลังของฝาซอง */
 
 .flap::after{
@@ -386,12 +379,12 @@ body{
     position:absolute;
 
     left:50%;
-    top:55%;
+    top:120px;
 
-    transform:translate(-50%,-50%);
+    transform:translateX(-50%);
 
-    width:72px;
-    height:72px;
+    width:68px;
+    height:68px;
 
     border-radius:50%;
 
@@ -399,24 +392,18 @@ body{
     justify-content:center;
     align-items:center;
 
-    font-size:30px;
+    background:radial-gradient(circle,#ff84aa,#d91d62);
 
     color:white;
 
-    background:
-    radial-gradient(circle at 35% 30%,
-        #ff91b4,
-        #e23973 70%);
+    font-size:28px;
 
     cursor:pointer;
 
-    z-index:50;
-
-    transition:.25s;
+    z-index:30;
 
     box-shadow:
-        0 10px 25px rgba(0,0,0,.22),
-        inset 0 3px 8px rgba(255,255,255,.45);
+        0 10px 20px rgba(0,0,0,.25);
 
 }
 
@@ -459,25 +446,23 @@ body{
 
     position:absolute;
 
-    left:20px;
-    right:20px;
+    left:32px;
+    right:32px;
 
-    bottom:20px;
+    bottom:15px;
 
-    height:260px;
+    height:185px;
 
-    transform:translateY(110px);
+    transform:translateY(125px);
 
-    transition:
-        transform 1.2s cubic-bezier(.22,1,.36,1);
+    transition:1.15s cubic-bezier(.22,1,.36,1);
 
-    z-index:8;
+    z-index:4;
 
 }
-
 .envelope.open .letter{
 
-    transform:translateY(-120px);
+    transform:translateY(-145px);
 
 }
 
@@ -487,26 +472,22 @@ body{
 
 .paper{
 
+    position:relative;
+
     width:100%;
     height:100%;
 
-    background:
-    linear-gradient(
-        to bottom,
-        #ffffff,
-        #fff9fc
-    );
+    background:white;
 
-    border-radius:16px;
+    border-radius:18px;
 
-    padding:30px;
+    padding:26px;
 
     overflow:hidden;
 
     box-shadow:
-        0 20px 40px rgba(0,0,0,.15);
 
-    border:1px solid rgba(255,182,205,.35);
+        0 20px 40px rgba(0,0,0,.18);
 
 }
 
@@ -541,7 +522,7 @@ body{
 
     color:#ff6d97;
 
-    font-size:30px;
+    font-size:28px;
 
     text-align:center;
 
@@ -559,9 +540,9 @@ body{
 
     color:#666;
 
-    font-size:18px;
+    font-size:16px;
 
-    line-height:1.9;
+    line-height:1.7;
 
     text-align:center;
 
@@ -574,7 +555,7 @@ body{
 .envelope.open{
 
     transform:
-        translateY(-8px)
+        translateY(-10px)
         scale(1.02);
 
 }
@@ -729,40 +710,31 @@ body{
    RESPONSIVE
 ========================================== */
 
-@media (max-width:768px){
+@media(max-width:768px){
 
     .container{
 
-        width:100%;
-
-        height:100vh;
-
-        transform:scale(.92);
+        transform:scale(.95);
 
     }
 
     .envelope{
 
         width:340px;
-
         height:225px;
-
-    }
-
-    .envelope-body{
-
-        height:175px;
 
     }
 
     .letter{
 
-        left:18px;
-        right:18px;
+        left:28px;
+        right:28px;
 
-        height:235px;
+        height:170px;
 
     }
+
+}
 
     .paper{
 
