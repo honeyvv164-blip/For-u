@@ -1,0 +1,875 @@
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    font-family:"Prompt",sans-serif;
+
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
+body{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #ffd8ea 0%,
+        #ffeef6 50%,
+        #fffafd 100%
+    );
+
+    position:relative;
+
+}
+
+/* ==========================================
+   BACKGROUND
+========================================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(
+        circle at 15% 20%,
+        rgba(255,255,255,.75),
+        transparent 32%
+    ),
+
+    radial-gradient(
+        circle at 80% 25%,
+        rgba(255,255,255,.55),
+        transparent 28%
+    ),
+
+    radial-gradient(
+        circle at 55% 90%,
+        rgba(255,255,255,.45),
+        transparent 40%
+    );
+
+    animation:bgMove 12s ease-in-out infinite alternate;
+
+}
+
+/* ==========================================
+   SPARKLES
+========================================== */
+
+.sparkles{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+}
+
+.sparkles::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-100%;
+
+    background-image:
+
+    radial-gradient(
+        white 1px,
+        transparent 1px
+    );
+
+    background-size:38px 38px;
+
+    opacity:.35;
+
+    animation:sparkle 18s linear infinite;
+
+}
+
+/* ==========================================
+   PETAL CANVAS
+========================================== */
+
+#petalCanvas{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    pointer-events:none;
+
+}
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+
+.container{
+
+    position:relative;
+
+    width:min(92vw,500px);
+
+    height:520px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    perspective:1800px;
+
+}
+
+/* ==========================================
+   ENVELOPE
+========================================== */
+
+.envelope{
+
+    position:relative;
+
+    width:380px;
+
+    height:250px;
+
+    transform-style:preserve-3d;
+
+    transition:transform .8s ease;
+
+    filter:drop-shadow(0 25px 40px rgba(0,0,0,.18));
+
+}
+
+/* ==========================================
+   ENVELOPE BODY
+========================================== */
+
+.envelope-body{
+
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:190px;
+
+    background:linear-gradient(
+        to bottom,
+        #f6cad8,
+        #ecadc0
+    );
+
+    border-radius:0 0 18px 18px;
+
+    overflow:hidden;
+
+    box-shadow:
+        inset 0 8px 12px rgba(255,255,255,.35),
+        0 18px 35px rgba(0,0,0,.12);
+
+}
+
+/* ==========================================
+   FRONT TRIANGLE
+========================================== */
+
+.envelope-body::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:#e7a5ba;
+
+    clip-path:polygon(
+        0 0,
+        50% 58%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+}
+
+/* ==========================================
+   SIDE SHADOW
+========================================== */
+
+.envelope-body::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:32px;
+
+    background:rgba(0,0,0,.06);
+
+    filter:blur(12px);
+
+}
+
+/* ==========================================
+   ENVELOPE EDGES
+========================================== */
+
+.envelope::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-2px;
+
+    right:-2px;
+
+    bottom:-2px;
+
+    height:194px;
+
+    border-radius:0 0 20px 20px;
+
+    border:2px solid rgba(255,255,255,.18);
+
+    pointer-events:none;
+
+}
+
+/* ==========================================
+   DEPTH
+========================================== */
+
+.envelope::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:10px;
+
+    right:10px;
+
+    bottom:-14px;
+
+    height:18px;
+
+    background:rgba(0,0,0,.12);
+
+    filter:blur(14px);
+
+    border-radius:50%;
+
+    z-index:-1;
+
+}
+/* ==========================================
+   ENVELOPE FLAP (3D)
+========================================== */
+
+.flap{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:135px;
+
+    background:linear-gradient(
+        to bottom,
+        #ffd8e6,
+        #f3b6c9
+    );
+
+    clip-path:polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    transform-origin:top center;
+
+    transform:rotateX(0deg);
+
+    transition:
+        transform 1s cubic-bezier(.25,.8,.25,1);
+
+    z-index:30;
+
+    backface-visibility:hidden;
+
+    box-shadow:
+        inset 0 10px 16px rgba(255,255,255,.45),
+        0 5px 15px rgba(0,0,0,.08);
+
+}
+
+/* ด้านหลังของฝาซอง */
+
+.flap::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(255,255,255,.18);
+
+    clip-path:inherit;
+
+}
+
+/* ==========================================
+   OPEN
+========================================== */
+
+.envelope.open .flap{
+
+    transform:rotateX(180deg);
+
+}
+
+/* ==========================================
+   WAX SEAL
+========================================== */
+
+.seal{
+
+    position:absolute;
+
+    left:50%;
+    top:55%;
+
+    transform:translate(-50%,-50%);
+
+    width:72px;
+    height:72px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:30px;
+
+    color:white;
+
+    background:
+    radial-gradient(circle at 35% 30%,
+        #ff91b4,
+        #e23973 70%);
+
+    cursor:pointer;
+
+    z-index:50;
+
+    transition:.25s;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.22),
+        inset 0 3px 8px rgba(255,255,255,.45);
+
+}
+
+.seal:hover{
+
+    transform:
+        translate(-50%,-50%)
+        scale(1.08);
+
+}
+
+/* ==========================================
+   WAX SHINE
+========================================== */
+
+.seal::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:18px;
+    height:18px;
+
+    border-radius:50%;
+
+    top:14px;
+    left:18px;
+
+    background:rgba(255,255,255,.55);
+
+    filter:blur(2px);
+
+}
+/* ==========================================
+   LETTER
+========================================== */
+
+.letter{
+
+    position:absolute;
+
+    left:20px;
+    right:20px;
+
+    bottom:20px;
+
+    height:260px;
+
+    transform:translateY(110px);
+
+    transition:
+        transform 1.2s cubic-bezier(.22,1,.36,1);
+
+    z-index:8;
+
+}
+
+.envelope.open .letter{
+
+    transform:translateY(-120px);
+
+}
+
+/* ==========================================
+   PAPER
+========================================== */
+
+.paper{
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #ffffff,
+        #fff9fc
+    );
+
+    border-radius:16px;
+
+    padding:30px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.15);
+
+    border:1px solid rgba(255,182,205,.35);
+
+}
+
+/* ==========================================
+   PAPER SHINE
+========================================== */
+
+.paper::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        120deg,
+        rgba(255,255,255,.45),
+        transparent 45%
+    );
+
+    pointer-events:none;
+
+}
+
+/* ==========================================
+   TITLE
+========================================== */
+
+.paper h1{
+
+    color:#ff6d97;
+
+    font-size:30px;
+
+    text-align:center;
+
+    margin-bottom:22px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+.paper p{
+
+    color:#666;
+
+    font-size:18px;
+
+    line-height:1.9;
+
+    text-align:center;
+
+}
+
+/* ==========================================
+   OPEN EFFECT
+========================================== */
+
+.envelope.open{
+
+    transform:
+        translateY(-8px)
+        scale(1.02);
+
+}
+/* ==========================================
+   HEART CONTAINER
+========================================== */
+
+#heartContainer{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:999;
+
+}
+
+/* ==========================================
+   FLOATING HEART
+========================================== */
+
+.heart{
+
+    position:absolute;
+
+    font-size:24px;
+
+    animation:heartFloat 3.2s ease-out forwards;
+
+    opacity:0;
+
+}
+
+@keyframes heartFloat{
+
+    0%{
+
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity:0;
+
+    }
+
+    15%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+            translateY(-260px)
+            translateX(var(--moveX))
+            rotate(25deg)
+            scale(1.6);
+
+        opacity:0;
+
+    }
+
+}
+
+/* ==========================================
+   SPARKLE ANIMATION
+========================================== */
+
+@keyframes sparkle{
+
+    from{
+
+        transform:translateY(0);
+
+    }
+
+    to{
+
+        transform:translateY(-320px);
+
+    }
+
+}
+
+/* ==========================================
+   BACKGROUND MOVE
+========================================== */
+
+@keyframes bgMove{
+
+    from{
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        transform:scale(1.08);
+
+    }
+
+}
+
+/* ==========================================
+   LETTER FADE
+========================================== */
+
+.paper h1,
+.paper p{
+
+    animation:fadeIn .8s ease both;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   ENVELOPE HOVER
+========================================== */
+
+.envelope:hover{
+
+    transform:
+        translateY(-5px);
+
+}
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width:768px){
+
+    .container{
+
+        width:100%;
+
+        height:100vh;
+
+        transform:scale(.92);
+
+    }
+
+    .envelope{
+
+        width:340px;
+
+        height:225px;
+
+    }
+
+    .envelope-body{
+
+        height:175px;
+
+    }
+
+    .letter{
+
+        left:18px;
+        right:18px;
+
+        height:235px;
+
+    }
+
+    .paper{
+
+        padding:24px;
+
+    }
+
+    .paper h1{
+
+        font-size:26px;
+
+    }
+
+    .paper p{
+
+        font-size:16px;
+
+    }
+
+}
+
+@media (max-width:430px){
+
+    .container{
+
+        transform:scale(.82);
+
+    }
+
+}
+
+/* ==========================================
+   SMOOTH ANIMATION
+========================================== */
+
+.envelope,
+.flap,
+.letter,
+.paper,
+.seal{
+
+    will-change:transform;
+
+}
+
+/* ==========================================
+   SEAL CLICK
+========================================== */
+
+.seal:active{
+
+    transform:
+        translate(-50%,-50%)
+        scale(.95);
+
+}
+
+/* ==========================================
+   PAPER SHADOW
+========================================== */
+
+.paper{
+
+    box-shadow:
+
+        0 28px 50px rgba(0,0,0,.16),
+
+        inset 0 0 0 1px rgba(255,255,255,.5);
+
+}
+
+/* ==========================================
+   ENVELOPE SHADOW
+========================================== */
+
+.envelope{
+
+    filter:
+
+        drop-shadow(0 35px 45px rgba(0,0,0,.18));
+
+}
+
+/* ==========================================
+   BEAUTIFUL FINISH
+========================================== */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+    radial-gradient(circle at center,
+
+    rgba(255,255,255,.12),
+
+    transparent 70%);
+
+}
+
+/* ==========================================
+   END
+========================================== */
