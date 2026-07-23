@@ -165,14 +165,12 @@ body{
 
     position:relative;
 
-    width:400px;
-    height:260px;
+    width:420px;
+    height:300px;
+
+    overflow:hidden;
 
     transform-style:preserve-3d;
-
-    transition:transform .8s ease;
-
-    filter:drop-shadow(0 30px 45px rgba(0,0,0,.18));
 
 }
 /* ==========================================
@@ -446,23 +444,21 @@ body{
 
     position:absolute;
 
-    left:32px;
-    right:32px;
+    left:25px;
+    right:25px;
 
-    bottom:15px;
+    bottom:-210px;
 
-    height:185px;
+    height:320px;
 
-    transform:translateY(125px);
+    transition:1.2s;
 
-    transition:1.15s cubic-bezier(.22,1,.36,1);
-
-    z-index:4;
+    z-index:5;
 
 }
 .envelope.open .letter{
 
-    transform:translateY(-145px);
+    bottom:15px;
 
 }
 
