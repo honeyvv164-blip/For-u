@@ -167,7 +167,7 @@ body{
     );
 
 }
-* ==========================================
+/* ==========================================
    ENVELOPE BODY
 ========================================== */
 
@@ -358,7 +358,7 @@ body{
 
     z-index:4;
 
-    transform:translateY(195px);
+    transform:translateY(170px);
 
     transition:transform 1s cubic-bezier(.22,1,.36,1);
 
@@ -634,7 +634,7 @@ body{
 
         height:185px;
 
-        transform:translateY(140px);
+        transform:translateY(145px);
 
     }
 
