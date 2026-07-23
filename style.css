@@ -59,105 +59,7 @@ body{
 
     radial-gradient(
         circle at 15% 20%,
-        rgba(255,255,255,.75),
-        transparent 32%
-    ),
-
-    radial-gradient(
-        circle at 80% 25%,
-        rgba(255,255,255,.55),
-        transparent 28%
-    ),
-
-    radial-gradient(
-        circle at 55% 90%,
-        rgba(255,255,255,.45),
-        transparent 40%
-    );
-
-    animation:bgMove 12s ease-in-out infinite alternate;
-
-}
-
-/* ==========================================
-   SPARKLES
-========================================== */
-
-.sparkles{
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    overflow:hidden;
-
-}
-
-.sparkles::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-100%;
-
-    background-image:
-
-    radial-gradient(
-        white 1px,
-        transparent 1px
-    );
-
-    background-size:38px 38px;
-
-    opacity:.35;
-
-    animation:sparkle 18s linear infinite;
-
-}
-
-/* ==========================================
-   PETAL CANVAS
-========================================== */
-
-#petalCanvas{
-
-    position:fixed;
-
-    inset:0;
-
-    width:100%;
-
-    height:100%;
-
-    pointer-events:none;
-
-}
-/* ==========================================
-   MAIN CONTAINER
-========================================== */
-
-.container{
-
-    position:relative;
-
-    width:min(92vw,500px);
-
-    height:520px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    perspective:1800px;
-
-}
-
-/* ==========================================
+       /* ==========================================
    ENVELOPE
 ========================================== */
 
@@ -165,14 +67,16 @@ body{
 
     position:relative;
 
-    width:420px;
-    height:350px;
-
-    overflow:visible;
+    width:100%;
+    height:100%;
 
     transform-style:preserve-3d;
 
+    filter:
+        drop-shadow(0 25px 40px rgba(0,0,0,.18));
+
 }
+
 /* ==========================================
    ENVELOPE BODY
 ========================================== */
@@ -182,31 +86,33 @@ body{
     position:absolute;
 
     left:0;
+    right:0;
     bottom:0;
 
     width:100%;
-    height:215px;
+    height:200px;
 
-    background:linear-gradient(
-        to bottom,
-        #f7c8d8,
-        #e9a8bd
-    );
+    border-radius:0 0 22px 22px;
 
-    border-radius:0 0 20px 20px;
+    background:
+        linear-gradient(
+            to bottom,
+            #f9cddd,
+            #ecadc3
+        );
 
     overflow:hidden;
 
-    z-index:2;
-
     box-shadow:
+
         inset 0 8px 12px rgba(255,255,255,.35),
-        0 18px 35px rgba(0,0,0,.12);
+
+        0 15px 30px rgba(0,0,0,.12);
 
 }
 
 /* ==========================================
-   FRONT TRIANGLE
+   FRONT PANEL
 ========================================== */
 
 .envelope-body::before{
@@ -217,7 +123,7 @@ body{
 
     inset:0;
 
-    background:#e7a5ba;
+    background:#eaa8be;
 
     clip-path:polygon(
         0 0,
@@ -227,10 +133,12 @@ body{
         0 100%
     );
 
+    z-index:8;
+
 }
 
 /* ==========================================
-   SIDE SHADOW
+   INNER SHADOW
 ========================================== */
 
 .envelope-body::after{
@@ -239,75 +147,20 @@ body{
 
     position:absolute;
 
-    left:0;
+    inset:0;
 
-    right:0;
-
-    bottom:0;
-
-    height:32px;
-
-    background:rgba(0,0,0,.06);
-
-    filter:blur(12px);
-
-}
-
-/* ==========================================
-   ENVELOPE EDGES
-========================================== */
-
-.envelope::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:-2px;
-
-    right:-2px;
-
-    bottom:-2px;
-
-    height:194px;
-
-    border-radius:0 0 20px 20px;
-
-    border:2px solid rgba(255,255,255,.18);
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.25),
+            transparent 35%
+        );
 
     pointer-events:none;
 
 }
-
 /* ==========================================
-   DEPTH
-========================================== */
-
-.envelope::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:10px;
-
-    right:10px;
-
-    bottom:-14px;
-
-    height:18px;
-
-    background:rgba(0,0,0,.12);
-
-    filter:blur(14px);
-
-    border-radius:50%;
-
-    z-index:-1;
-
-}
-/* ==========================================
-   ENVELOPE FLAP (3D)
+   ENVELOPE FLAP
 ========================================== */
 
 .flap{
@@ -318,12 +171,14 @@ body{
     left:0;
 
     width:100%;
-    height:135px;
+    height:140px;
 
-    background:linear-gradient(
-        #ffd8e6,
-        #f4b7ca
-    );
+    background:
+        linear-gradient(
+            to bottom,
+            #ffdbe8,
+            #f5b8cb
+        );
 
     clip-path:polygon(
         0 0,
@@ -333,15 +188,23 @@ body{
 
     transform-origin:top center;
 
-    transition:1s cubic-bezier(.25,.8,.25,1);
-
     transform:rotateX(0deg);
 
-    z-index:15;
+    transition:
+        transform 1s cubic-bezier(.25,.8,.25,1);
+
+    z-index:20;
 
     backface-visibility:hidden;
 
+    box-shadow:
+
+        inset 0 10px 16px rgba(255,255,255,.35),
+
+        0 6px 15px rgba(0,0,0,.08);
+
 }
+
 /* ด้านหลังของฝาซอง */
 
 .flap::after{
@@ -352,90 +215,12 @@ body{
 
     inset:0;
 
-    background:rgba(255,255,255,.18);
+    background:rgba(255,255,255,.12);
 
     clip-path:inherit;
 
 }
 
-/* ==========================================
-   OPEN
-========================================== */
-
-.envelope.open .flap{
-
-    transform:rotateX(180deg);
-
-}
-
-/* ==========================================
-   WAX SEAL
-========================================== */
-
-.seal{
-
-    position:absolute;
-
-    left:50%;
-    top:120px;
-
-    transform:translate(-50%,-50%);
-}
-    width:68px;
-    height:68px;
-
-    border-radius:50%;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background:radial-gradient(circle,#ff84aa,#d91d62);
-
-    color:white;
-
-    font-size:28px;
-
-    cursor:pointer;
-
-    z-index:30;
-
-    box-shadow:
-        0 10px 20px rgba(0,0,0,.25);
-
-}
-
-.seal:hover{
-
-    transform:
-        translate(-50%,-50%)
-        scale(1.08);
-
-}
-
-/* ==========================================
-   WAX SHINE
-========================================== */
-
-.seal::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:18px;
-    height:18px;
-
-    border-radius:50%;
-
-    top:14px;
-    left:18px;
-
-    background:rgba(255,255,255,.55);
-
-    filter:blur(2px);
-
-}
 /* ==========================================
    LETTER
 ========================================== */
@@ -444,22 +229,21 @@ body{
 
     position:absolute;
 
-    left:35px;
-    right:35px;
+    left:40px;
+    right:40px;
 
-    bottom:20px;
+    bottom:0;
 
-    height:190px;
-
-    transform:translateY(150px);
-
-    transition:transform 1.2s cubic-bezier(.22,1,.36,1);
+    height:220px;
 
     z-index:5;
 
-}
-.envelope.open .letter{
-    transform:translateY(-90px);
+    transform:translateY(150px);
+
+    transition:
+
+        transform 1.15s cubic-bezier(.22,1,.36,1);
+
 }
 
 /* ==========================================
@@ -473,17 +257,19 @@ body{
     width:100%;
     height:100%;
 
-    background:white;
+    background:#fffdfd;
 
     border-radius:18px;
 
-    padding:26px;
+    padding:28px;
 
     overflow:hidden;
 
+    border:1px solid rgba(255,210,225,.8);
+
     box-shadow:
 
-        0 20px 40px rgba(0,0,0,.18);
+        0 18px 35px rgba(0,0,0,.15);
 
 }
 
@@ -500,11 +286,12 @@ body{
     inset:0;
 
     background:
-    linear-gradient(
-        120deg,
-        rgba(255,255,255,.45),
-        transparent 45%
-    );
+
+        linear-gradient(
+            120deg,
+            rgba(255,255,255,.45),
+            transparent 45%
+        );
 
     pointer-events:none;
 
@@ -516,15 +303,15 @@ body{
 
 .paper h1{
 
-    color:#ff6d97;
+    color:#ff6fa5;
 
-    font-size:28px;
+    font-size:30px;
+
+    font-weight:700;
 
     text-align:center;
 
-    margin-bottom:22px;
-
-    font-weight:700;
+    margin-bottom:18px;
 
 }
 
@@ -536,292 +323,26 @@ body{
 
     color:#666;
 
-    font-size:16px;
+    font-size:17px;
 
-    line-height:1.7;
+    line-height:1.9;
 
     text-align:center;
 
 }
 
 /* ==========================================
-   OPEN EFFECT
+   OPEN
 ========================================== */
 
-.envelope.open{
+.envelope.open .flap{
 
-    transform:
-        translateY(-10px)
-        scale(1.02);
-
-}
-/* ==========================================
-   HEART CONTAINER
-========================================== */
-
-#heartContainer{
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    overflow:hidden;
-
-    z-index:999;
+    transform:rotateX(180deg);
 
 }
 
-/* ==========================================
-   FLOATING HEART
-========================================== */
+.envelope.open .letter{
 
-.heart{
-
-    position:absolute;
-
-    font-size:24px;
-
-    animation:heartFloat 3.2s ease-out forwards;
-
-    opacity:0;
+    transform:translateY(-85px);
 
 }
-
-@keyframes heartFloat{
-
-    0%{
-
-        transform:
-            translateY(0)
-            scale(.5);
-
-        opacity:0;
-
-    }
-
-    15%{
-
-        opacity:1;
-
-    }
-
-    100%{
-
-        transform:
-            translateY(-260px)
-            translateX(var(--moveX))
-            rotate(25deg)
-            scale(1.6);
-
-        opacity:0;
-
-    }
-
-}
-
-/* ==========================================
-   SPARKLE ANIMATION
-========================================== */
-
-@keyframes sparkle{
-
-    from{
-
-        transform:translateY(0);
-
-    }
-
-    to{
-
-        transform:translateY(-320px);
-
-    }
-
-}
-
-/* ==========================================
-   BACKGROUND MOVE
-========================================== */
-
-@keyframes bgMove{
-
-    from{
-
-        transform:scale(1);
-
-    }
-
-    to{
-
-        transform:scale(1.08);
-
-    }
-
-}
-
-/* ==========================================
-   LETTER FADE
-========================================== */
-
-.paper h1,
-.paper p{
-
-    animation:fadeIn .8s ease both;
-
-}
-
-@keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(18px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-/* ==========================================
-   ENVELOPE HOVER
-========================================== */
-
-.envelope:hover{
-
-    transform:
-        translateY(-5px);
-
-}
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width:768px){
-
-    .container{
-        transform:scale(.95);
-    }
-
-    .envelope{
-        width:340px;
-        height:225px;
-    }
-
-    .letter{
-        left:28px;
-        right:28px;
-        height:170px;
-    }
-
-    .paper{
-        padding:24px;
-    }
-
-    .paper h1{
-        font-size:26px;
-    }
-
-    .paper p{
-        font-size:16px;
-    }
-
-}
-@media (max-width:430px){
-
-    .container{
-
-        transform:scale(.82);
-
-    }
-
-}
-
-/* ==========================================
-   SMOOTH ANIMATION
-========================================== */
-
-.envelope,
-.flap,
-.letter,
-.paper,
-.seal{
-
-    will-change:transform;
-
-}
-
-/* ==========================================
-   SEAL CLICK
-========================================== */
-
-.seal:active{
-
-    transform:
-        translate(-50%,-50%)
-        scale(.95);
-
-}
-
-/* ==========================================
-   PAPER SHADOW
-========================================== */
-
-.paper{
-
-    box-shadow:
-
-        0 28px 50px rgba(0,0,0,.16),
-
-        inset 0 0 0 1px rgba(255,255,255,.5);
-
-}
-
-/* ==========================================
-   ENVELOPE SHADOW
-========================================== */
-
-.envelope{
-
-    filter:
-
-        drop-shadow(0 35px 45px rgba(0,0,0,.18));
-
-}
-
-/* ==========================================
-   BEAUTIFUL FINISH
-========================================== */
-
-body::after{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-
-    radial-gradient(circle at center,
-
-    rgba(255,255,255,.12),
-
-    transparent 70%);
-
-}
-
-/* ==========================================
-   END
-========================================== */
