@@ -444,22 +444,22 @@ body{
 
     position:absolute;
 
-    left:25px;
-    right:25px;
+    left:35px;
+    right:35px;
 
-    bottom:-210px;
+    bottom:0;
 
-    height:320px;
+    height:190px;
 
-    transition:1.2s;
+    transform:translateY(190px);
+
+    transition:transform 1.2s cubic-bezier(.22,1,.36,1);
 
     z-index:5;
 
 }
 .envelope.open .letter{
-
-    bottom:15px;
-
+    transform:translateY(-70px);
 }
 
 /* ==========================================
